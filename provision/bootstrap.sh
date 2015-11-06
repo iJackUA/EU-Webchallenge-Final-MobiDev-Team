@@ -51,12 +51,12 @@ service php5-fpm restart
 #/bin/su -c 'npm run-script build' vagrant
 
 ## run migrations
-#/bin/su -c '/vagrant/yii migrate --migrationPath=@vendor/dektrium/yii2-user/migrations --interactive=0' vagrant
-#/bin/su -c '/vagrant/yii migrate --migrationPath=@yii/rbac/migrations --interactive=0' vagrant
-#/bin/su -c '/vagrant/yii migrate --interactive=0' vagrant
+/bin/su -c '/vagrant/yii migrate --migrationPath=@vendor/dektrium/yii2-user/migrations --interactive=0' vagrant
+/bin/su -c '/vagrant/yii migrate --migrationPath=@yii/rbac/migrations --interactive=0' vagrant
+/bin/su -c '/vagrant/yii migrate --interactive=0' vagrant
 
 # create admin user and example data
-#/bin/su -c '/vagrant/yii init' vagrant
+/bin/su -c '/vagrant/yii init' vagrant
 
 # remove all crontab job
 #/bin/su -c 'crontab -r' vagrant

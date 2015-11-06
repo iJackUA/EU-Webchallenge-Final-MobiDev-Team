@@ -27,7 +27,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'MobiDev Surveys',
+        'brandLabel' => 'MobiDev team',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -45,11 +45,6 @@ AppAsset::register($this);
                     'label' => 'Admin Panel',
                     'url' => ['/admin'],
                     'visible' => Yii::$app->user->can('Administrator')
-                ],
-                [
-                    'label' => 'My Surveys',
-                    'url' => ['/survey/index'],
-                    'visible' => !Yii::$app->user->isGuest
                 ],
                 [
                     'label' => 'My Profile',

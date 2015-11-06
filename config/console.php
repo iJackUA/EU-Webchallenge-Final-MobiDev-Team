@@ -7,7 +7,7 @@ $db = require(__DIR__ . '/db.php');
 
 $config = [
     'id' => 'basic-console',
-    'name' => 'MobiDev Surveys',
+    'name' => 'MobiDev',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'app\commands',
