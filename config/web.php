@@ -4,7 +4,7 @@ $params = require(__DIR__ . '/params.php');
 
 $config = [
     'id' => 'basic',
-    'name' => 'MobiDev Surveys',
+    'name' => 'MobiDev Final Task',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log', 'gon'],
     'components' => [
