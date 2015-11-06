@@ -1,3 +1,4 @@
 .idea
 .vagrant
 web/js/build.js
+vendor
