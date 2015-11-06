@@ -39,7 +39,7 @@ cat /vagrant/provision/config/xdebug.ini > /etc/php5/fpm/conf.d/xdebug.ini
 ## TODO: delete oauth token after qualification
 ## install composer
 #curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-/bin/su -c 'composer global require "fxp/composer-asset-plugin:~1.0.3"' vagrant
+#/bin/su -c 'composer global require "fxp/composer-asset-plugin:~1.0.3"' vagrant
 
 ## restart server
 /etc/init.d/nginx restart
