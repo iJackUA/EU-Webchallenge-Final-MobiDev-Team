@@ -34,6 +34,7 @@ ln -s /vagrant /usr/share/nginx/www
 cat /vagrant/provision/config/default.conf > /etc/nginx/sites-available/default
 cat /vagrant/provision/config/phppgadmin.conf > /etc/nginx/sites-available/phppgadmin
 cat /vagrant/provision/config/php.ini > /etc/php5/php.ini
+cat /vagrant/provision/config/xdebug.ini > /etc/php5/conf.d/xdebug.ini
 
 ## TODO: delete oauth token after qualification
 ## install composer
