@@ -15,7 +15,7 @@ curl -sL https://deb.nodesource.com/setup | sudo bash -
 ## source /usr/local/rvm/scripts/rvm
 
 ## now lets install it along with nginx
-apt-get -q -y install nodejs php5 php5-cli php5-fpm php5-pgsql php5-curl php5-intl nginx postgresql postgresql-contrib
+apt-get -q -y install nodejs php5 php5-cli php5-fpm php5-xdebug php5-pgsql php5-curl php5-intl nginx postgresql postgresql-contrib
 
 ## add rights to www-data user
 sudo usermod -a -G vagrant www-data
