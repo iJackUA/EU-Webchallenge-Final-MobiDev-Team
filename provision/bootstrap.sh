@@ -38,17 +38,11 @@ cat /vagrant/provision/config/php.ini > /etc/php5/php.ini
 ## TODO: delete oauth token after qualification
 ## install composer
 #curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-#/bin/su -c 'composer config -g github-oauth.github.com  53dfb543b41b26635ede81450247d94f5eb8a346' vagrant
-#/bin/su -c 'composer global require "fxp/composer-asset-plugin:~1.0.3"' vagrant
+/bin/su -c 'composer global require "fxp/composer-asset-plugin:~1.0.3"' vagrant
 
 ## restart server
 /etc/init.d/nginx restart
 service php5-fpm restart
-
-## setup app
-## run composer update
-#cd /vagrant
-#/bin/su -c 'composer update --prefer-dist --optimize-autoloader' vagrant
 
 # setup npm dependencies
 # and build static assets
@@ -56,14 +50,14 @@ service php5-fpm restart
 #/bin/su -c 'npm run-script build' vagrant
 
 ## run migrations
-/bin/su -c '/vagrant/yii migrate --migrationPath=@vendor/dektrium/yii2-user/migrations --interactive=0' vagrant
-/bin/su -c '/vagrant/yii migrate --migrationPath=@yii/rbac/migrations --interactive=0' vagrant
-/bin/su -c '/vagrant/yii migrate --interactive=0' vagrant
+#/bin/su -c '/vagrant/yii migrate --migrationPath=@vendor/dektrium/yii2-user/migrations --interactive=0' vagrant
+#/bin/su -c '/vagrant/yii migrate --migrationPath=@yii/rbac/migrations --interactive=0' vagrant
+#/bin/su -c '/vagrant/yii migrate --interactive=0' vagrant
 
 # create admin user and example data
-/bin/su -c '/vagrant/yii init' vagrant
+#/bin/su -c '/vagrant/yii init' vagrant
 
 # remove all crontab job
-/bin/su -c 'crontab -r' vagrant
+#/bin/su -c 'crontab -r' vagrant
 # create crontab job
-/bin/su -c 'crontab -l | { cat; echo "*/1 * * * * /vagrant/yii send > /dev/null 2>&1"; } | crontab -' vagrant
+#/bin/su -c 'crontab -l | { cat; echo "*/1 * * * * /vagrant/yii send > /dev/null 2>&1"; } | crontab -' vagrant
