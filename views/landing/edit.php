@@ -35,7 +35,8 @@ $this->title = $landing->title;
                     <li v-repeat="s in defaultSections">
                         <a href="#"
                            v-on="click:addSection(s.type, $event)"
-                        >{{sectionName(s)}}</a></li>
+                        >{{sectionName(s)}}</a>
+                    </li>
                 </ul>
             </div>
 
@@ -44,7 +45,12 @@ $this->title = $landing->title;
                     v-transition="expand"
                     v-on="click:changeSection($index, $event)"
                 >
-                    <a href="">{{sectionName(s)}}</a>
+                    <button
+                        v-on="click:removeSection($index, $event)"
+                        type="button" class="btn btn-danger"
+                        style="display: inline-block; margin-left: 20px;">x
+                    </button>
+                    <a href="" style="display: inline-block;">{{sectionName(s)}} </a>
                 </li>
             </ul>
 
