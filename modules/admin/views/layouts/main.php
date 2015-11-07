@@ -63,7 +63,7 @@ AppAsset::register($this);
 
     <div class="ui inverted vertical footer segment form-page">
         <div class="ui container">
-            <p class="pull-right">&copy; <a href="http://mobidev.biz/" target="_blank">MobiDev</a> for EuWeb
+            <p class="pull-right">&copy;  EuWeb Finals
                 Challenge <?= date('Y') ?></p>
         </div>
     </div>

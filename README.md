@@ -1,1 +1,2 @@
-## MobiDev Team. EU Webchallenge Final task
+## EU Webchallenge Final task
+- run vagrant up
