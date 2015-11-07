@@ -102,3 +102,10 @@ a.desc:after {
 [v-cloak] {
     display: none;
 }
+
+.list-group-item.landing-item {
+    height: 70px;
+}
+.list-group-item.landing-item img{
+    margin-left: 20px;
+}

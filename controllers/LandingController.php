@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\gii\Landing;
 use app\models\gii\SectionTemplate;
 use app\models\gii\Section;
+use app\models\SearchLanding;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
@@ -20,7 +21,7 @@ class LandingController extends Controller
         return array_merge_recursive(parent::behaviors(), [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['edit', 'create', 'delete'],
+                'only' => ['edit', 'create', 'delete', 'index'],
                 'rules' => [
                     [
                         'allow' => true,
@@ -34,6 +35,18 @@ class LandingController extends Controller
                     'delete' => ['POST'],
                 ],
             ]
+        ]);
+    }
+
+    public function actionIndex()
+    {
+        $userId = Yii::$app->getUser()->getId();
+        $searchModel = new SearchLanding();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $userId);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 

@@ -42,6 +42,11 @@ AppAsset::register($this);
                     'visible' => Yii::$app->user->isGuest
                 ],
                 [
+                    'label' => 'My Landings',
+                    'url' => ['/landing/index'],
+                    'visible' => !Yii::$app->user->isGuest
+                ],
+                [
                     'label' => 'My Profile',
                     'url' => ['/user/settings/profile'],
                     'visible' => !Yii::$app->user->isGuest
