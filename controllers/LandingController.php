@@ -9,6 +9,7 @@ use app\transformers\SectionTransformer;
 use app\models\SearchLanding;
 use app\lib\TemplateReader;
 use Yii;
+use yii\base\Exception;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
@@ -91,8 +92,30 @@ class LandingController extends Controller
         ]);
     }
 
-    public function saveUpdate()
+    public function actionSaveUpdate($id)
     {
+        $landing = $this->findModel($id);
+
+        $title = Yii::$app->request->getBodyParam('title');
+        $slug = Yii::$app->request->getBodyParam('slug');
+        $landing->title = $title;
+        $landing->slug = $slug;
+
+        if ($landing->save()) {
+            Section::deleteAll(['landing_id' => $landing->id]);
+            $sections = Yii::$app->request->getBodyParam('sections');
+            if (!empty($sections)) {
+                foreach ($sections as $section) {
+                    $s = new Section();
+                    $s->landing_id = $landing->id;
+                    $s->section_template_id = TemplateReader::getSectionTplId($section['type']);
+                    $s->meta = json_encode($section['meta']);
+                    $s->save();
+                }
+            }
+        } else {
+            throw new Exception('Can not save Landing page. Failed validation.');
+        }
 
     }
 
