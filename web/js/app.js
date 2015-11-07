@@ -140,6 +140,13 @@ var App = new Vue({
                 console.log(data, status);
             })
 
+        },
+        removeSection: function (index, e) {
+            e.preventDefault();
+            this.sections.$remove(index);
+            if (!this.currentSection && this.sectionsExists) {
+                this.currentSection = this.sections[0];
+            }
         }
     }
 });
