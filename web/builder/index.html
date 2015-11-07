@@ -51,54 +51,76 @@
 <div class="container-fluid" id="awesome-builder">
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
-            <h4>{{title}}</h4>
-            <ul class="nav nav-sidebar">
-                <li>
-                    <button type="button" class="btn btn-default">Preview</button>
-                </li>
-                <!--<li class="active"><a href="#">Overview </a></li>-->
-            </ul>
+            <button
+                    type="button"
+                    class="btn btn-info"
+                    v-on="click:saveLanding($event)"
+            >Save
+            </button>
+            <br>
+
+            Title:
+            <textarea v-model="title" rows="2" class="form-control"></textarea>
+            Slug:
+            <input type="text" v-model="slug" class="form-control">
+            <br>
+            <a href="/preview/123456" class="btn btn-default" target="_blank">Preview</a>
 
             <h4>Sections</h4>
-            <ul class="nav nav-sidebar">
-                <li v-repeat="s in sections"><a href="">{{sectionName(s)}}</a></li>
 
-                <li>
-                    <button
-                            type="button"
-                            class="btn btn-success"
-                            v-on="click:addSection"
-                    >Add section
-                    </button>
+            <div class="btn-group">
+                <button type="button" class="btn btn-success dropdown-toggle"
+                        data-toggle="dropdown">
+                    Add section... <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li v-repeat="s in defaultSections">
+                        <a href="#"
+                           v-on="click:addSection(s.type, $event)"
+                        >{{sectionName(s)}}</a></li>
+                </ul>
+            </div>
+
+            <ul class="nav nav-sidebar" v-cloak>
+                <li v-repeat="s in sections"
+                    v-transition="expand"
+                    v-on="click:changeSection($index, $event)"
+                >
+                    <a href="">{{sectionName(s)}}</a>
                 </li>
             </ul>
+
         </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <ul v-if="sectionsExists">
-                <li v-repeat="s in sections" v-transition="expand">
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" v-cloak>
+            <ul v-if="currentSectionExists">
+                <li>
 
                     <heading
-                            s="{{@ s.meta}}"
-                            v-if="s.type == 'heading'"
+                            s="{{@ currentSection.meta}}"
+                            v-if="currentSection.type == 'heading'"
                     ></heading>
 
                     <gallery
-                            s="{{@ s.meta}}"
-                            v-if="s.type == 'gallery'"
+                            s="{{@ currentSection.meta}}"
+                            v-if="currentSection.type == 'gallery'"
                     ></gallery>
 
                     <services
-                            s="{{@ s.meta}}"
-                            v-if="s.type == 'services'"
+                            s="{{@ currentSection.meta}}"
+                            v-if="currentSection.type == 'services'"
                     ></services>
 
                     <contacts
-                            s="{{@ s.meta}}"
-                            v-if="s.type == 'contacts'"
+                            s="{{@ currentSection.meta}}"
+                            v-if="currentSection.type == 'contacts'"
                     ></contacts>
 
                 </li>
             </ul>
+
+            <div class="alert alert-warning" v-if="!currentSectionExists">
+                No sections found. Go and create some!
+            </div>
 
         </div>
     </div>

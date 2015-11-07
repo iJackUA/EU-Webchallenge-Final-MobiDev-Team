@@ -98,3 +98,7 @@ a.desc:after {
     height: 0;
     opacity: 0;
 }
+
+[v-cloak] {
+    display: none;
+}
