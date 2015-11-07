@@ -1,9 +1,11 @@
 <?php
 /* @var $this yii\web\View */
+/* @var $landing app\models\gii\Landing */
+
+$this->title = $landing->title;
 ?>
 <h1><?= $landing->title ?></h1>
 
 <p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
+    <a href="/l/<?= $landing->slug ?>" class="btn btn-primary" role="button" target="_blank">Preview</a>
 </p>

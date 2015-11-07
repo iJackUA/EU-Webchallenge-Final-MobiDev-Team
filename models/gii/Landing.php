@@ -12,6 +12,7 @@ use Yii;
  * @property integer $template_id
  * @property integer $status
  * @property string $slug
+ * @property string $title
  * @property string $created_at
  * @property string $updated_at
  */

@@ -22,6 +22,7 @@ $config = [
             'rules' => [
                 '<controller:[\w\-]+>/<action:[\w\-]+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:[\w\-]+>/<id:\d+>' => '<controller>/view',
+                'l/<id:\w+>' => 'landing/show',
             ],
         ],
         'authManager' => [

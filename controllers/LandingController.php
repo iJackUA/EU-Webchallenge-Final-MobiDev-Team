@@ -35,7 +35,13 @@ class LandingController extends Controller
 
     public function actionShow($id)
     {
-        return $this->render('show');
+        $this->layout = 'landing';
+
+        $landing = $this->findModelBySlug($id);
+
+        return $this->render('show', [
+            'landing' => $landing
+        ]);
     }
 
     public function actionEdit($id)
@@ -57,6 +63,15 @@ class LandingController extends Controller
     protected function findModel($id)
     {
         if (($model = Landing::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+    protected function findModelBySlug($slug)
+    {
+        if (($model = Landing::findOne(['slug' => $slug])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
