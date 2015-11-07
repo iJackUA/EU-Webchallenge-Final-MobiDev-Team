@@ -155,10 +155,10 @@ class LandingController extends Controller
     protected function registerGonTemplates($landingTplId)
     {
         $templates = [
-            'contacts' => TemplateReader::getSectionFor($landingTplId, 'contacts'),
-            'gallery' => TemplateReader::getSectionFor($landingTplId, 'gallery'),
-            'heading' => TemplateReader::getSectionFor($landingTplId, 'heading'),
-            'services' => TemplateReader::getSectionFor($landingTplId, 'services'),
+            'contacts' => TemplateReader::getEditSectionFor($landingTplId, 'contacts'),
+            'gallery' => TemplateReader::getEditSectionFor($landingTplId, 'gallery'),
+            'heading' => TemplateReader::getEditSectionFor($landingTplId, 'heading'),
+            'services' => TemplateReader::getEditSectionFor($landingTplId, 'services'),
         ];
 
         \Yii::$app->gon->send('templates', $templates);

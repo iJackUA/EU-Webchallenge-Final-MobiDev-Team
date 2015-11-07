@@ -68,17 +68,17 @@ window.gon['defaults'] = {
             heading: 'Ready to serve, Master!',
             services: [
                 {
-                    icon: 'fa-plus',
+                    icon: 'fa fa-4x fa-diamond',
                     title: 'Autos',
                     description: 'Cars'
                 },
                 {
-                    icon: 'fa-plus',
+                    icon: 'fa fa-4x fa-diamond',
                     title: 'Moto',
                     description: 'Bikes'
                 },
                 {
-                    icon: 'fa-plus',
+                    icon: 'fa fa-4x fa-diamond',
                     title: 'Aero',
                     description: 'Fly'
                 },

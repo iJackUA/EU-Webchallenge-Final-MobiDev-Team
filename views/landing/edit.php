@@ -50,31 +50,29 @@ $this->title = $landing->title;
 
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" v-cloak>
-            <ul v-if="currentSectionExists">
-                <li>
+            <div v-if="currentSectionExists">
 
-                    <heading
-                        s="{{@ currentSection.meta}}"
-                        v-if="currentSection.type == 'heading'"
-                    ></heading>
+                <heading
+                    s="{{@ currentSection.meta}}"
+                    v-if="currentSection.type == 'heading'"
+                ></heading>
 
-                    <gallery
-                        s="{{@ currentSection.meta}}"
-                        v-if="currentSection.type == 'gallery'"
-                    ></gallery>
+                <gallery
+                    s="{{@ currentSection.meta}}"
+                    v-if="currentSection.type == 'gallery'"
+                ></gallery>
 
-                    <services
-                        s="{{@ currentSection.meta}}"
-                        v-if="currentSection.type == 'services'"
-                    ></services>
+                <services
+                    s="{{@ currentSection.meta}}"
+                    v-if="currentSection.type == 'services'"
+                ></services>
 
-                    <contacts
-                        s="{{@ currentSection.meta}}"
-                        v-if="currentSection.type == 'contacts'"
-                    ></contacts>
+                <contacts
+                    s="{{@ currentSection.meta}}"
+                    v-if="currentSection.type == 'contacts'"
+                ></contacts>
 
-                </li>
-            </ul>
+            </div>
 
             <div class="alert alert-warning" v-if="!currentSectionExists">
                 No sections found. Go and create some!
