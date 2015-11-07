@@ -50,6 +50,40 @@ class LandingController extends Controller
     {
         $landing = $this->findModel($id);
 
+        /*
+         $fractal = new Fractal\Manager();
+        $fractal->setSerializer(new ArraySerializer());
+
+        $questionItems = new Fractal\Resource\Collection($survey->questions, function (Question $q) {
+            return [
+                'title' => $q->title,
+                'required' => $q->required,
+                'position' => $q->position,
+                'uuid' => $q->uuid,
+                'type' => $q->type,
+                'meta' => json_decode($q->meta),
+                'survey_id' => $q->survey_id
+            ];
+        });
+
+        $surveyItem = new Fractal\Resource\Item($survey, function (Survey $survey) use ($fractal, $questionItems) {
+            return [
+                'title' => $survey->title,
+                'desc' => $survey->desc,
+                'emails' => implode(', ', ArrayHelper::getColumn($survey->participants, 'email')),
+                'startDate' => (new \DateTime($survey->startDate))->format("Y-m-d"),
+                'sendDate' => (new \DateTime($survey->sendDate))->format("Y-m-d"),
+                'expireDate' => (new \DateTime($survey->expireDate))->format("Y-m-d"),
+                'questions' => $fractal->createData($questionItems)->toArray()
+            ];
+        });
+
+
+        Yii::$app->gon->send('survey', $fractal->createData($surveyItem)->toArray());
+        Yii::$app->gon->send('saveSurveyUrl', Url::to(['/survey/save-update', 'id' => $id]));
+        Yii::$app->gon->send('afterSaveSurveyRedirectUrl', \Yii::$app->request->referrer);
+         */
+
         return $this->render('edit', [
             'landing' => $landing
         ]);
