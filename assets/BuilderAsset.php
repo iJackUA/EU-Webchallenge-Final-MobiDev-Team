@@ -12,17 +12,17 @@ use yii\web\AssetBundle;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class AppAsset extends AssetBundle
+class BuilderAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/site.css',
+        'css/dashboard.css',
     ];
     public $js = [
+        'js/build.js'
     ];
     public $depends = [
-        'yii\web\YiiAsset',
-        'yii\web\JqueryAsset'
+        'app\assets\AppAsset'
     ];
 }
