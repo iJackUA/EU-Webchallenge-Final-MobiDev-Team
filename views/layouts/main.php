@@ -72,10 +72,7 @@ AppAsset::register($this);
 
 <div class="ui inverted vertical footer segment form-page">
     <div class="ui container">
-        <p class="pull-right">&copy;
-            <a href="https://github.com/iJackUA">Ievgen Kuzminov</a> &bullet;
-            <a href="https://github.com/sergey-koba-mobidev">Sergey Koba</a> &bullet;
-            <a href="https://github.com/VictorGub">Viktor Gubochkin</a> for EU Web Challenge 2015</p>
+        <p class="pull-right">&copy; TEAM EU Web Challenge 2015</p>
     </div>
 </div>
 
