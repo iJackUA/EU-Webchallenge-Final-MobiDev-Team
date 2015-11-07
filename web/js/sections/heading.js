@@ -1,7 +1,7 @@
 var g = require('../global');
 
 module.exports = {
-    template: window.gon.templates['heading'](),
+    template: window.gon.templates['heading'],
 
     props: ['s'],
 

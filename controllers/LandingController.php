@@ -5,7 +5,9 @@ namespace app\controllers;
 use app\models\gii\Landing;
 use app\models\gii\SectionTemplate;
 use app\models\gii\Section;
+use app\transformers\SectionTransformer;
 use app\models\SearchLanding;
+use app\lib\TemplateReader;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
@@ -69,30 +71,29 @@ class LandingController extends Controller
         $fractal = new Fractal\Manager();
         $fractal->setSerializer(new ArraySerializer());
 
-        $sectionItems = new Fractal\Resource\Collection($landing->sections, function (Section $s) {
-            return [
-                'meta' => json_decode($s->meta),
-                'landing_id' => $s->landing_id
-            ];
-        });
+        $sectionItems = new Fractal\Resource\Collection($landing->sections, new SectionTransformer);
 
         $landingItem = new Fractal\Resource\Item($landing, function (Landing $landing) use ($fractal, $sectionItems) {
             return [
                 'title' => $landing->title,
                 'slug' => $landing->slug,
+                'currentSection' => null,
                 'sections' => $fractal->createData($sectionItems)->toArray()
             ];
         });
 
-
+        $this->registerGonTemplates($landing->template_id);
         Yii::$app->gon->send('landing', $fractal->createData($landingItem)->toArray());
-        Yii::$app->gon->send('saveSurveyUrl', Url::to(['/landing/save-update', 'id' => $id]));
-        Yii::$app->gon->send('afterSaveRedirectUrl', \Yii::$app->request->referrer);
-
+        Yii::$app->gon->send('saveUrl', Url::to(['/landing/save-update', 'id' => $id]));
 
         return $this->render('edit', [
             'landing' => $landing
         ]);
+    }
+
+    public function saveUpdate()
+    {
+
     }
 
     public function actionCreate($templateId)
@@ -149,5 +150,17 @@ class LandingController extends Controller
         }
 
         return $landing;
+    }
+
+    protected function registerGonTemplates($landingTplId)
+    {
+        $templates = [
+            'contacts' => TemplateReader::getSectionFor($landingTplId, 'contacts'),
+            'gallery' => TemplateReader::getSectionFor($landingTplId, 'gallery'),
+            'heading' => TemplateReader::getSectionFor($landingTplId, 'heading'),
+            'services' => TemplateReader::getSectionFor($landingTplId, 'services'),
+        ];
+
+        \Yii::$app->gon->send('templates', $templates);
     }
 }

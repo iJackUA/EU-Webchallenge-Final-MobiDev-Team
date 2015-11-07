@@ -1,7 +1,7 @@
 var g = require('../global');
 
 module.exports = {
-    template: window.gon.templates['contacts'](),
+    template: window.gon.templates['contacts'],
 
     props: ['s'],
 
