@@ -13,6 +13,8 @@ class m151107_120033_create_sections_table extends Migration
                 'landing_id' => $this->integer()->notNull(),
                 'section_template_id' => $this->integer()->notNull(),
                 'meta' => "JSON DEFAULT '{}'::JSON",
+                'created_at' => $this->dateTime(),
+                'updated_at' => $this->dateTime(),
             ]);
     }
 

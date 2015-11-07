@@ -47,7 +47,42 @@ class InitController extends Controller
         $manager = Yii::$app->authManager;
         $manager->assign($adminRole, $adminId);
 
-
+        // Add some templates and section data
+        echo "    > Create template ...\n";
+        $connection->createCommand()->insert('{{%template}}', [
+            'id' => 1,
+            'title' => "Creative",
+            'created_at' => '2015-11-06 00:00:00',
+            'updated_at' => '2015-11-06 00:00:00',
+        ])->execute();
+        $connection->createCommand()->insert('{{%section_template}}', [
+            'id' => 1,
+            'template_id' => 1,
+            'title' => 'Heading',
+            'created_at' => '2015-11-06 00:00:00',
+            'updated_at' => '2015-11-06 00:00:00',
+        ])->execute();
+        $connection->createCommand()->insert('{{%section_template}}', [
+            'id' => 2,
+            'template_id' => 1,
+            'title' => 'Services',
+            'created_at' => '2015-11-06 00:00:00',
+            'updated_at' => '2015-11-06 00:00:00',
+        ])->execute();
+        $connection->createCommand()->insert('{{%section_template}}', [
+            'id' => 3,
+            'template_id' => 1,
+            'title' => 'Gallery',
+            'created_at' => '2015-11-06 00:00:00',
+            'updated_at' => '2015-11-06 00:00:00',
+        ])->execute();
+        $connection->createCommand()->insert('{{%section_template}}', [
+            'id' => 4,
+            'template_id' => 1,
+            'title' => 'Contacts',
+            'created_at' => '2015-11-06 00:00:00',
+            'updated_at' => '2015-11-06 00:00:00',
+        ])->execute();
 
         echo " done (time: " . sprintf('%.3f', microtime(true) - $time) . "s)\n";
     }
