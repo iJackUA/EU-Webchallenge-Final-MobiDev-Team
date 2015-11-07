@@ -180,6 +180,7 @@
 	            e.preventDefault();
 	            this.$http.post(window.gon.saveUrl, JSON.stringify(this.$data),
 	                function (data, status, request) {
+	                    $('#previewBtn').attr('href', '/' + this.slug);
 	                    alert('Saved!');
 	                }).error(function (data, status, request) {
 	                alert('Error');
