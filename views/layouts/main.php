@@ -42,11 +42,6 @@ AppAsset::register($this);
                     'visible' => Yii::$app->user->isGuest
                 ],
                 [
-                    'label' => 'Admin Panel',
-                    'url' => ['/admin'],
-                    'visible' => Yii::$app->user->can('Administrator')
-                ],
-                [
                     'label' => 'My Profile',
                     'url' => ['/user/settings/profile'],
                     'visible' => !Yii::$app->user->isGuest

@@ -46,47 +46,14 @@ $config = [
                 ],
             ],
         ],
-        'view' => [
-            'theme' => [
-                'pathMap' => [
-                    '@dektrium/user/views' => '@app/modules/admin/views/users'
-                ],
-            ],
-        ],
         'db' => require(__DIR__ . '/db.php'),
         'gon' => [
             'class' => 'app\components\GonComponent',
         ],
     ],
     'modules' => [
-        'admin' => [
-            'class' => 'app\modules\admin\Admin',
-            'layoutPath' => '@app/modules/admin/views/layouts',
-            'layout' => 'main',
-            'defaultRoute' => 'dashboard',
-        ],
         'user' => [
             'class' => 'dektrium\user\Module',
-            'controllerMap' => [
-                'admin' => [
-                    'class' => 'app\modules\admin\controllers\UsersController',
-                    'layout' => '@app/modules/admin/views/layouts/main',
-                ],
-            ],
-        ],
-        'rbac' => [
-            'class' => 'app\modules\admin\overrides\Module',
-            'basePath' => '@app/vendor/dektrium/yii2-rbac',
-            'controllerMap' => [
-                'role' => [
-                    'class' => 'app\modules\admin\controllers\RoleController',
-                    'layout' => '@app/modules/admin/views/layouts/main',
-                ],
-                'permission' => [
-                    'class' => 'app\modules\admin\controllers\PermissionController',
-                    'layout' => '@app/modules/admin/views/layouts/main',
-                ],
-            ],
         ],
     ],
     'params' => $params,
