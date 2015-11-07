@@ -22,7 +22,7 @@ $this->title = $landing->title;
             Slug:
             <input type="text" v-model="slug" class="form-control">
             <br>
-            <a href="/<?= $landing->slug ?>" class="btn btn-default" target="_blank">Preview</a>
+            <a href="/<?= $landing->slug ?>" class="btn btn-default" id="previewBtn" target="_blank">Preview</a>
 
             <h4>Sections</h4>
 
