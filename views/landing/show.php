@@ -17,6 +17,7 @@ foreach($landing->sections as $section) {
             case 'services':
                 $searches[] = '###HEADING###';
                 $replaces[] = $metas['heading'];
+
                 $searches[] = '###SERVICES###';
                 $servicesCode = '';
                 foreach($metas['services'] as $service) {
@@ -32,6 +33,18 @@ foreach($landing->sections as $section) {
             case 'gallery':
                 $searches[] = '###HEADING###';
                 $replaces[] = $metas['heading'];
+
+                $searches[] = '###PHOTOS###';
+                $photosCode = '';
+                foreach($metas['images'] as $photo) {
+                    $s = $r = [];
+                    foreach($photo as $k => $v) {
+                        $s[] = '###'.strtoupper($k).'###';
+                        $r[] = $v;
+                    }
+                    $photosCode .= str_replace($s, $r, file_get_contents(Yii::getAlias('@app').'/web/templates/'.$landing->template_id.'/sections/photo.html'));
+                }
+                $replaces[] = $photosCode;
                 break;
             default:
                 $searches[] = '###'.strtoupper($key).'###';
