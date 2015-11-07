@@ -5,23 +5,6 @@ Vue.config.debug = true;
 Vue.use(require('./vendor/vue-resource.min'));
 Vue.http.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
 
-window.gon = {};
-
-
-window.gon['templates'] = {
-    contacts: function () {
-        return "CONT"
-    },
-    gallery: function () {
-        return "GAL"
-    },
-    heading: function () {
-        return "{{s.title}} -- {{s.description}}"
-    },
-    services: function () {
-        return "SERV"
-    }
-};
 
 window.gon['defaults'] = {
     heading: {
@@ -104,19 +87,6 @@ window.gon['defaults'] = {
     }
 };
 
-window.gon['landing'] = {
-    title: 'New Awesome Landing',
-    slug: 'awesome-madness-' + Math.floor(Date.now() / 1000),
-    currentSection: null,
-    sections: [
-        _.clone(window.gon.defaults['heading'], true),
-        _.clone(window.gon.defaults['heading'], true),
-        _.clone(window.gon.defaults['gallery'], true),
-        _.clone(window.gon.defaults['services'], true),
-        _.clone(window.gon.defaults['contacts'], true),
-    ]
-};
-
 
 var App = new Vue({
     el: '#awesome-builder',
@@ -162,7 +132,14 @@ var App = new Vue({
         },
         saveLanding: function (e) {
             e.preventDefault();
-            alert('Consider me as saved, Master!');
+            this.$http.post(window.gon.saveUrl, JSON.stringify(this.$data),
+                function (data, status, request) {
+                    alert('Saved!');
+                }).error(function (data, status, request) {
+                alert('Error');
+                console.log(data, status);
+            })
+
         }
     }
 });
