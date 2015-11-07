@@ -102,6 +102,13 @@ class LandingController extends Controller
         return $this->redirect('/landing/edit/' . $landing->id);
     }
 
+    public function actionDelete($id)
+    {
+        $this->findModel($id)->delete();;
+
+        return $this->redirect('/landing/index');
+    }
+
     protected function findModel($id)
     {
         if (($model = Landing::findOne($id)) !== null) {
