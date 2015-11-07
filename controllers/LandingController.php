@@ -9,6 +9,7 @@ use app\models\SearchLanding;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use League\Fractal;
@@ -75,23 +76,19 @@ class LandingController extends Controller
             ];
         });
 
-        /*$surveyItem = new Fractal\Resource\Item($survey, function (Survey $survey) use ($fractal, $questionItems) {
+        $landingItem = new Fractal\Resource\Item($landing, function (Landing $landing) use ($fractal, $sectionItems) {
             return [
-                'title' => $survey->title,
-                'desc' => $survey->desc,
-                'emails' => implode(', ', ArrayHelper::getColumn($survey->participants, 'email')),
-                'startDate' => (new \DateTime($survey->startDate))->format("Y-m-d"),
-                'sendDate' => (new \DateTime($survey->sendDate))->format("Y-m-d"),
-                'expireDate' => (new \DateTime($survey->expireDate))->format("Y-m-d"),
-                'questions' => $fractal->createData($questionItems)->toArray()
+                'title' => $landing->title,
+                'slug' => $landing->slug,
+                'sections' => $fractal->createData($sectionItems)->toArray()
             ];
         });
 
 
-        Yii::$app->gon->send('survey', $fractal->createData($surveyItem)->toArray());
-        Yii::$app->gon->send('saveSurveyUrl', Url::to(['/survey/save-update', 'id' => $id]));
-        Yii::$app->gon->send('afterSaveSurveyRedirectUrl', \Yii::$app->request->referrer);
-         */
+        Yii::$app->gon->send('landing', $fractal->createData($landingItem)->toArray());
+        Yii::$app->gon->send('saveSurveyUrl', Url::to(['/landing/save-update', 'id' => $id]));
+        Yii::$app->gon->send('afterSaveRedirectUrl', \Yii::$app->request->referrer);
+
 
         return $this->render('edit', [
             'landing' => $landing
@@ -137,7 +134,7 @@ class LandingController extends Controller
 
         $sectionTemplates = SectionTemplate::find()->where(['template_id' => $templateId])->all();
 
-        foreach($sectionTemplates as $sectionTemplate) {
+        foreach ($sectionTemplates as $sectionTemplate) {
             $section = new Section();
             $section->section_template_id = $sectionTemplate->id;
             $section->landing_id = $landing->id;
