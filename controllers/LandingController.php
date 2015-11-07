@@ -3,6 +3,8 @@
 namespace app\controllers;
 
 use app\models\gii\Landing;
+use app\models\gii\SectionTemplate;
+use app\models\gii\Section;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
@@ -57,7 +59,7 @@ class LandingController extends Controller
     {
         $landing = $this->createNewLanding(Yii::$app->getUser()->getId(), $templateId);
 
-        return $this->redirect('/landing/edit/' . $landing->slug);
+        return $this->redirect('/landing/edit/' . $landing->id);
     }
 
     protected function findModel($id)
@@ -78,16 +80,27 @@ class LandingController extends Controller
         }
     }
 
-    private function createNewLanding($userId, $templateId) {
+    private function createNewLanding($userId, $templateId)
+    {
         $landing = new Landing();
         $landing->user_id = $userId;
         $landing->template_id = $templateId;
         $landing->title = 'Landing ';
         $landing->slug = 'landing';
         $landing->save();
-        $landing->slug = $landing->slug.$landing->id;
-        $landing->title = $landing->title.$landing->id;
+        $landing->slug = $landing->slug . $landing->id;
+        $landing->title = $landing->title . $landing->id;
         $landing->save();
+
+        $sectionTemplates = SectionTemplate::find()->where(['template_id' => $templateId])->all();
+
+        foreach($sectionTemplates as $sectionTemplate) {
+            $section = new Section();
+            $section->section_template_id = $sectionTemplate->id;
+            $section->landing_id = $landing->id;
+            $section->save();
+        }
+
         return $landing;
     }
 }
