@@ -20,7 +20,7 @@ class InitController extends Controller
         //Create admin user
         echo "    > create admin user admin/admin admin@mobidev.biz\n";
         $connection = Yii::$app->db;
-        /*$connection->createCommand()->insert('{{%user}}', [
+        $connection->createCommand()->insert('{{%user}}', [
             'username' => "admin",
             'email' => "admin@mobidev.biz",
             'password_hash' => Yii::$app->security->generatePasswordHash('admin'),
@@ -45,7 +45,7 @@ class InitController extends Controller
         //Assign admin role to admin user
         echo "    > assign admin role to admin user ...\n";
         $manager = Yii::$app->authManager;
-        $manager->assign($adminRole, $adminId);*/
+        $manager->assign($adminRole, $adminId);
 
         // Add some templates and section data
         echo "    > Create template and sections ...\n";
