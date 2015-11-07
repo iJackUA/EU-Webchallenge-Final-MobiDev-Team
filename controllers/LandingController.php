@@ -163,14 +163,14 @@ class LandingController extends Controller
         $landing->title = $landing->title . $landing->id;
         $landing->save();
 
-        $sectionTemplates = SectionTemplate::find()->where(['template_id' => $templateId])->all();
+        /*$sectionTemplates = SectionTemplate::find()->where(['template_id' => $templateId])->all();
 
         foreach ($sectionTemplates as $sectionTemplate) {
             $section = new Section();
             $section->section_template_id = $sectionTemplate->id;
             $section->landing_id = $landing->id;
             $section->save();
-        }
+        }*/
 
         return $landing;
     }

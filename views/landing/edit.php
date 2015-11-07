@@ -49,7 +49,7 @@ $this->title = $landing->title;
             </ul>
 
         </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" v-cloak>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="width: 760px !important;" v-cloak>
             <div v-if="currentSectionExists">
 
                 <heading
