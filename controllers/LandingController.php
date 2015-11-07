@@ -2,9 +2,12 @@
 
 namespace app\controllers;
 
+use app\models\gii\Landing;
+use Yii;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 
 class LandingController extends Controller
 {
@@ -30,13 +33,46 @@ class LandingController extends Controller
         ]);
     }
 
-    public function actionShow()
+    public function actionShow($id)
     {
         return $this->render('show');
     }
 
-    public function actionEdit()
+    public function actionEdit($id)
     {
-        return $this->render('edit');
+        $landing = $this->findModel($id);
+
+        return $this->render('edit', [
+            'landing' => $landing
+        ]);
+    }
+
+    public function actionCreate($templateId)
+    {
+        $landing = $this->createNewLanding(Yii::$app->getUser()->getId(), $templateId);
+
+        return $this->redirect('/landing/edit/' . $landing->slug);
+    }
+
+    protected function findModel($id)
+    {
+        if (($model = Landing::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+    private function createNewLanding($userId, $templateId) {
+        $landing = new Landing();
+        $landing->user_id = $userId;
+        $landing->template_id = $templateId;
+        $landing->title = 'Landing ';
+        $landing->slug = 'landing';
+        $landing->save();
+        $landing->slug = $landing->slug.$landing->id;
+        $landing->title = $landing->title.$landing->id;
+        $landing->save();
+        return $landing;
     }
 }

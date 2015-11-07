@@ -1,7 +1,7 @@
 <?php
 /* @var $this yii\web\View */
 ?>
-<h1>landing/edit</h1>
+<h1><?= $landing->title ?></h1>
 
 <p>
     You may change the content of this page by modifying
