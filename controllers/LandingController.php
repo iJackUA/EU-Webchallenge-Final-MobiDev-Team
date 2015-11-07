@@ -10,6 +10,8 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use League\Fractal;
+use app\lib\ArraySerializer;
 
 class LandingController extends Controller
 {
@@ -50,23 +52,17 @@ class LandingController extends Controller
     {
         $landing = $this->findModel($id);
 
-        /*
-         $fractal = new Fractal\Manager();
+        $fractal = new Fractal\Manager();
         $fractal->setSerializer(new ArraySerializer());
 
-        $questionItems = new Fractal\Resource\Collection($survey->questions, function (Question $q) {
+        $sectionItems = new Fractal\Resource\Collection($landing->sections, function (Section $s) {
             return [
-                'title' => $q->title,
-                'required' => $q->required,
-                'position' => $q->position,
-                'uuid' => $q->uuid,
-                'type' => $q->type,
-                'meta' => json_decode($q->meta),
-                'survey_id' => $q->survey_id
+                'meta' => json_decode($s->meta),
+                'landing_id' => $s->landing_id
             ];
         });
 
-        $surveyItem = new Fractal\Resource\Item($survey, function (Survey $survey) use ($fractal, $questionItems) {
+        /*$surveyItem = new Fractal\Resource\Item($survey, function (Survey $survey) use ($fractal, $questionItems) {
             return [
                 'title' => $survey->title,
                 'desc' => $survey->desc,

@@ -15,6 +15,7 @@ use Yii;
  * @property string $title
  * @property string $created_at
  * @property string $updated_at
+ * @property Array $sections
  */
 class Landing extends \yii\db\ActiveRecord
 {
@@ -61,5 +62,10 @@ class Landing extends \yii\db\ActiveRecord
     public static function find()
     {
         return new \app\models\query\LandingQuery(get_called_class());
+    }
+
+    public function getSections()
+    {
+        return $this->hasMany(Section::className(), ['landing_id' => 'id']);
     }
 }

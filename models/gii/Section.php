@@ -60,4 +60,9 @@ class Section extends \yii\db\ActiveRecord
     {
         return new \app\models\query\SectionQuery(get_called_class());
     }
+
+    public function getSectionTemplate()
+    {
+        return $this->hasOne(SectionTemplate::className(), ['id' => 'section_template_id']);
+    }
 }
