@@ -25,7 +25,6 @@ window.gon['templates'] = {
 
 window.gon['defaults'] = {
     heading: {
-        id: '1',
         type: 'heading',
         meta: {
             title: 'Hi there!',
@@ -107,6 +106,8 @@ window.gon['defaults'] = {
 
 window.gon['landing'] = {
     title: 'New Awesome Landing',
+    slug: 'awesome-madness-' + Math.floor(Date.now() / 1000),
+    currentSection: null,
     sections: [
         _.clone(window.gon.defaults['heading'], true),
         _.clone(window.gon.defaults['heading'], true),
@@ -119,13 +120,13 @@ window.gon['landing'] = {
 
 var App = new Vue({
     el: '#awesome-builder',
-    data: {
-        title: 'New landing',
-        sections: []
-    },
+    data: {},
     ready: function () {
         if (window.gon.landing) {
             this.$set('$data', _.clone(window.gon.landing, true));
+        }
+        if (!this.currentSection && this.sectionsExists) {
+            this.currentSection = this.sections[0];
         }
     },
     components: {
@@ -137,14 +138,31 @@ var App = new Vue({
     computed: {
         sectionsExists: function () {
             return !_.isEmpty(this.sections)
+        },
+        currentSectionExists: function () {
+            return !_.isEmpty(this.currentSection)
+        },
+        defaultSections: function () {
+            return window.gon.defaults;
         }
     },
     methods: {
         sectionName: function (section) {
-                return section.type.charAt(0).toUpperCase() + section.type.slice(1);
+            return section.type.charAt(0).toUpperCase() + section.type.slice(1);
         },
-        addSection: function (type) {
+        addSection: function (type, e) {
+            e.preventDefault();
+            var section = _.clone(window.gon['defaults'][type], true);
             this.sections.push(section);
+        },
+        changeSection: function (index, e) {
+            e.preventDefault();
+            var section = this.sections[index];
+            this.currentSection = section;
+        },
+        saveLanding: function (e) {
+            e.preventDefault();
+            alert('Consider me as saved, Master!');
         }
     }
 });
