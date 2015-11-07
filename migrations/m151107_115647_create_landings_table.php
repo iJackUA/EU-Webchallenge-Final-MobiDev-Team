@@ -13,6 +13,7 @@ class m151107_115647_create_landings_table extends Migration
             [
                 'id' => $this->primaryKey(),
                 'user_id' => $this->integer()->notNull(),
+                'template_id' => $this->integer()->notNull(),
                 'status' => $this->smallInteger()->defaultValue(self::DEFAULT_STATUS),
                 'slug' => $this->text()->notNull(),
                 'title' => $this->text()->notNull(),

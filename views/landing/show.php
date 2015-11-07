@@ -1,9 +1,10 @@
 <?php
 /* @var $this yii\web\View */
-?>
-<h1>landing/show</h1>
+/* @var $landing app\models\gii\Landing */
 
-<p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
-</p>
+$landing_code = file_get_contents(Yii::getAlias('@app').'/web/templates/'.$landing->template_id.'/index.html');
+$landing_code = str_replace('###TEMPLATE_ID###',$landing->template_id,$landing_code);
+
+
+echo $landing_code;
+?>

@@ -18,7 +18,7 @@ $this->title = 'Awesome Landing Creator';
                     <img src="/templates/<?= $template->id ?>/preview.jpg" alt="...">
                     <div class="caption">
                         <h3><?= $template->title; ?></h3>
-                        <p><a href="#" class="btn btn-primary" role="button">Start</a></p>
+                        <p><a href="/landing/create?templateId=<?= $template->id ?>" class="btn btn-primary" role="button">Start</a></p>
                     </div>
                 </div>
             </div>

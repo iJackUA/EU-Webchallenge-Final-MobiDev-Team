@@ -9,8 +9,10 @@ use Yii;
  *
  * @property integer $id
  * @property integer $user_id
+ * @property integer $template_id
  * @property integer $status
  * @property string $slug
+ * @property string $title
  * @property string $created_at
  * @property string $updated_at
  */
