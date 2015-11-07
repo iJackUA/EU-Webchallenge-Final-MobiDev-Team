@@ -2,17 +2,29 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 text-center">
-                <h2 class="section-heading"><input v-model="s.title"/></h2>
+                <h2 class="section-heading">
+                    <label>Title</label>
+                    <input v-model="s.title"/>
+                </h2>
                 <hr class="primary">
-                <p><textarea v-model="s.description" id="" cols="30" rows="10"></textarea></p>
+                <p>
+                    <label>Description</label>
+                    <textarea v-model="s.description" id="" cols="30" rows="10"></textarea>
+                </p>
             </div>
             <div class="col-lg-4 col-lg-offset-2 text-center">
                 <i class="fa fa-phone fa-3x wow bounceIn"></i>
-                <p><input v-model="s.phone"/></p>
+                <p>
+                    <label>Phone</label>
+                    <input v-model="s.phone"/>
+                </p>
             </div>
             <div class="col-lg-4 text-center">
                 <i class="fa fa-envelope-o fa-3x wow bounceIn" data-wow-delay=".1s"></i>
-                <p><a href="mailto:your-email@your-domain.com"><input v-model="s.email"/></a></p>
+                <p>
+                    <label>Email</label>
+                    <input v-model="s.email"/>
+                </p>
             </div>
         </div>
     </div>

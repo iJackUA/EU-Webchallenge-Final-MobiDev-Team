@@ -4,8 +4,11 @@
 
             <div class="col-lg-4 col-sm-6" v-repeat="img in s.images">
                 <a href="#" class="portfolio-box">
+                    <label>Image Url</label>
                     <input v-model="img.imgUrl" class="form-control"/>
+                    <label>Url</label>
                     <input v-model="img.url" class="form-control"/>
+                    <label>Title</label>
                     <input v-model="img.title" class="form-control"/>
                 </a>
             </div>

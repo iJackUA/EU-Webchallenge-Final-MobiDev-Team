@@ -1,9 +1,15 @@
 <header>
     <div class="header-content">
         <div class="header-content-inner">
-            <h1><input v-model="s.title"/></h1>
+            <h1>
+                <label>Title</label>
+                <input v-model="s.title"/>
+            </h1>
             <hr>
-            <p><textarea v-model="s.description" id="" cols="30" rows="10"></textarea></p>
+            <p>
+                <label>Description</label>
+                <textarea v-model="s.description" id="" cols="30" rows="10"></textarea>
+            </p>
             "Find Out More" anchor
             <input v-model="anchor" palceholder="#smth"/></h1>
         </div>
