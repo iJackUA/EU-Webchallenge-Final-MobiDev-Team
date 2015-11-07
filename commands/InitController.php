@@ -48,7 +48,7 @@ class InitController extends Controller
         $manager->assign($adminRole, $adminId);
 
         // Add some templates and section data
-        echo "    > Create template ...\n";
+        echo "    > Create template and sections ...\n";
         $connection->createCommand()->insert('{{%template}}', [
             'id' => 1,
             'title' => "Creative",
